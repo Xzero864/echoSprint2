@@ -3,12 +3,7 @@
 
 
 window.onload = () => {
-<<<<<<< HEAD
-    prepareButton()
-
-=======
-  prepareButton();
->>>>>>> e8de6dc54d64056b5dbe2f58aa6e4edccc0e97a0
+    prepareButton();
 
   // If you're adding an event for a button click, do something similar.
   // The event name in that case is "click", not "keypress", and the type of the element
@@ -56,7 +51,6 @@ const handleButton = (e: MouseEvent) => {
   }
 };
 const prepareButton = () => {
-<<<<<<< HEAD
     console.log("Button was prepared");
     const maybeButton: HTMLElement | null = document.getElementById('submitButton');
     if (maybeButton === null) {
@@ -68,27 +62,8 @@ const prepareButton = () => {
     }
 
 
-
+    console.log("Button was prepared");
 }
-
-
-
-
-
-
-
-=======
-  console.log("Button was prepared");
-  const maybeButton: HTMLElement | null =
-    document.getElementById("submitButton");
-  if (maybeButton === null) {
-    console.log("Button could not be found");
-  } else if (maybeButton instanceof HTMLButtonElement) {
-    console.log("event listener added");
-    maybeButton.addEventListener("click", handleButton);
-  }
-};
->>>>>>> e8de6dc54d64056b5dbe2f58aa6e4edccc0e97a0
 
 // We'll use a global state reference for now
 
