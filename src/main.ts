@@ -8,16 +8,15 @@ window.onload = () => {
     // should be HTMLButtonElement. The handler function for a "click" takes no arguments.
 }
 
-let history = ""
 const textBox: HTMLElement | null = document.getElementById("replText");
 const historyText: HTMLElement | null = document.getElementById("history");
 const handleButton = (e:MouseEvent) => {
-    console.log(history);
-    if (textBox != null && textBox instanceof HTMLInputElement && textBox.textContent != null) {
-        history = history.concat(textBox.textContent)
-        textBox.textContent = null
-        if (historyText != null && historyText instanceof HTMLParagraphElement) {
-            historyText.textContent = history;
+    if (textBox != null && textBox instanceof HTMLInputElement && textBox.value != null) {
+        if (historyText != null && historyText instanceof HTMLDivElement) {
+            const newPara:HTMLParagraphElement = document.createElement("p");
+            newPara.textContent = textBox.value;
+            historyText.appendChild(newPara);
+            textBox.value = ""
         } else {
             console.log ("History could not be found")
         }
@@ -33,11 +32,17 @@ const prepareButton = () => {
     const maybeButton: HTMLElement | null = document.getElementById('submitButton');
     if (maybeButton === null) {
         console.log("Button could not be found");
-    } else if (maybeButton instanceof HTMLButtonElement){
-        maybeButton.addEventListener("click",handleButton)
+    } else if (maybeButton instanceof HTMLButtonElement) {
+        console.log("event listener added");
+        maybeButton.addEventListener("click", handleButton)
 
     }
+
+
+
 }
+
+
 
 
 
