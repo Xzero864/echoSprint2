@@ -11,7 +11,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="../styles/main.css" type="text/css">
 </head>
-<body>
+<body id = "body">
     <!-- Tell the browser what to show if JavaScript/TypeScript is disabled. -->
     <noscript>This example requires JavaScript to run.</noscript>
     <!-- Prepare a region of the page to hold the entire REPL interface -->
@@ -25,6 +25,7 @@
         <div class="repl-input">
             <input type="text" class="repl-command-box" placeholder = "Enter command here" id="replText">
             <button class ="repl-submit" id = "submitButton">Submit</button>
+            <button id = "mode">brief</button>
         </div>
     </div>
     <!-- Load the script! Note: the .js extension is because browsers don't use TypeScript
