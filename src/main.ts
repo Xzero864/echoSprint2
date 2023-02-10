@@ -1,6 +1,10 @@
 // The window.onload callback is invoked when the window is first loaded by the browser
+
+
+import {tableCsv} from "./tableCsv";
 window.onload = () => {
     prepareButton()
+    display();
 
 
     // If you're adding an event for a button click, do something similar.
@@ -40,6 +44,12 @@ const prepareButton = () => {
 
 
 
+}
+
+const display = () => {
+    console.log("called")
+    if (historyText === null) return;
+    historyText.appendChild(tableCsv([["1","2","3","4","5"],["6","7","8","9","10"]],false))
 }
 
 
