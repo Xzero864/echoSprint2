@@ -1,6 +1,6 @@
 // The window.onload callback is invoked when the window is first loaded by the browser
 import * as csv from "./tableCsv.js";
-import { firstCSV, petsCSV } from "./mockedJson.js";
+import { csvMap, searchResults } from "./mockedJson.js";
 
 window.onload = () => {
   prepareButton();
@@ -21,9 +21,7 @@ const prepareKeyPress = () => {
     });
   }
 };
-const csvMap = new Map();
-csvMap.set("firstCSV", firstCSV);
-csvMap.set("petsCSV", petsCSV);
+
 let curCSV: Array<Array<string>> | null = null;
 let mode = "brief";
 
@@ -68,6 +66,16 @@ const handleButton = () => {
           }
           break;
         case "search":
+          if (curCSV != null) {
+            if (searchResults.has(`${args[1]},${args[2]}`)) {
+              logText(true, `${args[1]} was found in the following rows:`);
+              csvProcess(searchResults.get(`${args[1]},${args[2]}`));
+            } else {
+              logText(true, `Could not find ${args[2]} in col ${args[1]}`);
+            }
+          } else {
+            logText(true, "Cannot search, no CSV loaded");
+          }
           break;
         default:
       }
