@@ -38,6 +38,9 @@ const handleButton = () => {
   ) {
     if (historyText != null && historyText instanceof HTMLDivElement) {
       const args = textBox.value.split(" ");
+      if (mode === "verbose") {
+        logText(false, textBox.value);
+      }
       switch (args[0]) {
         case "mode":
           mode = mode === "brief" ? "verbose" : "brief";
@@ -49,7 +52,7 @@ const handleButton = () => {
           }
           break;
         case "load_file":
-          if (args[1] in csvMap) {
+          if (csvMap.has(args[1])) {
             curCSV = csvMap.get(args[1]);
             logText(true, "CSV loaded Successfully");
           } else {
@@ -68,9 +71,6 @@ const handleButton = () => {
           break;
         default:
       }
-      if (mode === "verbose") {
-        logText(false, textBox.value);
-      }
 
       textBox.value = "";
     } else {
@@ -80,6 +80,7 @@ const handleButton = () => {
     console.log("Error, text box could not be found");
   }
 };
+
 const prepareButton = () => {
   console.log("Button was prepared");
   const maybeButton: HTMLElement | null =
