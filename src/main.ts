@@ -36,13 +36,21 @@ const handleButton = () => {
   ) {
     if (historyText != null && historyText instanceof HTMLDivElement) {
       const args = textBox.value.split(" ");
-      if (mode === "verbose") {
+      if (mode === "verbose" && args[0] !== "mode") {
         logText(false, textBox.value);
       }
       switch (args[0]) {
         case "mode":
-          mode = mode === "brief" ? "verbose" : "brief";
-          console.log(mode);
+          if (args[1] === "brief") {
+            mode = "brief";
+            logText(true, "Output is now brief");
+          } else if (args[1] === "verbose") {
+            mode = "verbose";
+            logText(false, textBox.value);
+            logText(true, "Output is now verbose");
+          } else {
+            logText(true, "Mode must be either brief or verbose");
+          }
           const modeButton: HTMLElement | null =
             document.getElementById("mode");
           if (modeButton != null) {
@@ -78,8 +86,10 @@ const handleButton = () => {
           }
           break;
         default:
+          logText(true, `Did not recognize command "${args[0]}"`);
+          break;
       }
-
+      historyText.appendChild(document.createElement("hr"));
       textBox.value = "";
     } else {
       console.log("History could not be found");
