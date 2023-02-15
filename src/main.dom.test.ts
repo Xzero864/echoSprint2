@@ -29,10 +29,10 @@ beforeEach(() => {
   input = screen.getByPlaceholderText("Enter command here");
 });
 
+// now working
 test("trying invalid command in brief mode prints message", () => {
-  submitButton.addEventListener("click", main.handleButton);
   userEvent.type(input, `boop`);
-  userEvent.click(submitButton);
+  main.handleButton();
   const output = screen.getAllByText(
     `Output: Did not recognize command 'boop'`
   );

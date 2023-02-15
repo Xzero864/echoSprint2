@@ -25,10 +25,13 @@ const prepareKeyPress = () => {
 let curCSV: Array<Array<string>> | null = null;
 let mode = "brief";
 
-const textBox: HTMLElement | null = document.getElementById("replText");
-const historyText: HTMLElement | null = document.getElementById("history");
+// had to get rid of global pointers bc it makes hard to test... maybe use a getter for these?
+// const textBox: HTMLElement | null = document.getElementById("replText");
+// const historyText: HTMLElement | null = document.getElementById("history");
 
 const handleButton = () => {
+  const textBox: HTMLElement | null = document.getElementById("replText");
+  const historyText: HTMLElement | null = document.getElementById("history");
   if (
     textBox != null &&
     textBox instanceof HTMLInputElement &&
@@ -116,11 +119,13 @@ const prepareButton = () => {
 };
 
 const csvProcess = (inputCSV: Array<Array<string>>) => {
+  const historyText: HTMLElement | null = document.getElementById("history");
   if (historyText === null) return;
   historyText.appendChild(csv.tableCsv(inputCSV, false));
 };
 
 const logText = (outPut: boolean, text: string) => {
+  const historyText: HTMLElement | null = document.getElementById("history");
   const newPara: HTMLParagraphElement = document.createElement("p");
   if (outPut) {
     newPara.textContent = `Output: ${text}`;
