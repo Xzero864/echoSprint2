@@ -76,20 +76,22 @@ const handleButton = () => {
         case "search":
           if (curCSV != null) {
             if (searchResults.has(`${args[1]},${args[2]}`)) {
-              logText(true, `${args[1]} was found in the following rows:`);
+              logText(true, `'${args[2]}' was found in the following rows:`);
               csvProcess(searchResults.get(`${args[1]},${args[2]}`));
             } else {
-              logText(true, `Could not find ${args[2]} in col ${args[1]}`);
+              logText(true, `Could not find '${args[2]}' in col ${args[1]}`);
             }
           } else {
             logText(true, "Cannot search, no CSV loaded");
           }
           break;
         default:
-          logText(true, `Did not recognize command "${args[0]}"`);
+          logText(true, `Did not recognize command '${args[0]}'`);
           break;
       }
+      // add line in between each command
       historyText.appendChild(document.createElement("hr"));
+      // clear textbox
       textBox.value = "";
     } else {
       console.log("History could not be found");
@@ -129,8 +131,4 @@ const logText = (outPut: boolean, text: string) => {
   historyText.appendChild(newPara);
 };
 
-// We'll use a global state reference for now
-
-// Provide this to other modules (e.g., for testing!)
-// The configuration in this project will require /something/ to be exported.
 export { handleButton };
