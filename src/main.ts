@@ -1,14 +1,9 @@
-// The window.onload callback is invoked when the window is first loaded by the browser
 import * as csv from "./tableCsv.js";
 import { csvMap, searchResults } from "./mockedJson.js";
 
 window.onload = () => {
   prepareButton();
   prepareKeyPress();
-
-  // If you're adding an event for a button click, do something similar.
-  // The event name in that case is "click", not "keypress", and the type of the element
-  // should be HTMLButtonElement. The handler function for a "click" takes no arguments.
 };
 
 const prepareKeyPress = () => {
