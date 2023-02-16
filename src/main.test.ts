@@ -22,7 +22,6 @@ test("csv table functionality", () => {
   const nameHeader = headerRow.children[0];
   const ageHeader = headerRow.children[1];
   const countryHeader = headerRow.children[2];
-
   expect(nameHeader.tagName).toBe('TH');
   expect(nameHeader.textContent).toBe('Name');
   expect(ageHeader.tagName).toBe('TH');

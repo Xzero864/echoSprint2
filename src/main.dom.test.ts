@@ -74,6 +74,8 @@ test("csv viewing works",() => {
   main.handleButton()
   let output = screen.getAllByText("Output: See table below")
   expect(output.length).toBe(1);
+  output = screen.getAllByText("fido")
+  expect(output.length).toBe(3);
 })
 
 test("basic verbose tests", () => {
@@ -86,6 +88,9 @@ test("basic verbose tests", () => {
   output = screen.getAllByText("Output: Did not recognize command 'I'")
   expect(output.length).toBe(1)
 })
+
+
+
 
 
 

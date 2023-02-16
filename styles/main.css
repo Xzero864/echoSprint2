@@ -3,7 +3,8 @@
   Positioning in CSS can sometimes be annoying to manage, so we've opted to 
   give you this starter CSS. Feel free to modify it as you wish, though.
 */
-
+body {
+}
 .repl {
     position:relative;
     min-height:95vh;    
@@ -33,6 +34,11 @@
     width: 80%;
     margin: auto;
     display: inline-block;
+}
+
+.mode-button {
+    width: 10%;
+    font-size: 20px;
 }
 table, th, td {
     border: 1px solid black;

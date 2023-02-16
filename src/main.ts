@@ -27,6 +27,7 @@ let mode = "brief";
 const handleButton = () => {
   const textBox: HTMLElement | null = document.getElementById("replText");
   const historyText: HTMLElement | null = document.getElementById("history");
+  //
   if (
     textBox != null &&
     textBox instanceof HTMLInputElement &&
