@@ -1,11 +1,17 @@
 import * as csv from "./tableCsv.js";
 import { csvMap, searchResults } from "./mockedJson.js";
 
+/**
+ * Calls when the window loads.
+ */
 window.onload = () => {
   prepareButton();
   prepareKeyPress();
 };
 
+/**
+ * Gives the "return" button the same functionality as Submit button.
+ */
 const prepareKeyPress = () => {
   const body: HTMLElement | null = document.getElementById("body");
   if (body != null) {
@@ -20,10 +26,9 @@ const prepareKeyPress = () => {
 let curCSV: Array<Array<string>> | null = null;
 let mode = "brief";
 
-// had to get rid of global pointers bc it makes hard to test... maybe use a getter for these?
-// const textBox: HTMLElement | null = document.getElementById("replText");
-// const historyText: HTMLElement | null = document.getElementById("history");
-
+/**
+ * Called whenever the "submit" button is pressed; splits command into an array of args and handles logic for each one.
+ */
 const handleButton = () => {
   const textBox: HTMLElement | null = document.getElementById("replText");
   const historyText: HTMLElement | null = document.getElementById("history");
@@ -99,6 +104,9 @@ const handleButton = () => {
   }
 };
 
+/**
+ * Gets the Submit button and adds a function to be called when it is clicked.
+ */
 const prepareButton = () => {
   console.log("Button was prepared");
   const maybeButton: HTMLElement | null =
@@ -113,12 +121,23 @@ const prepareButton = () => {
   console.log("Button was prepared");
 };
 
+/**
+ * Turns input CSV into an HTML table and appends it to the history so it can show up on screen.
+ * @param inputCSV A 2D array of Strings representing the input CSV.
+ * @returns Null if historyText does not exist.
+ */
 const csvProcess = (inputCSV: Array<Array<string>>) => {
   const historyText: HTMLElement | null = document.getElementById("history");
   if (historyText === null) return;
   historyText.appendChild(csv.tableCsv(inputCSV, false));
 };
 
+/**
+ * Adds the Command / Output text to the screen by appending to history.
+ * @param outPut Boolean true if this text is the output of a command; false if it is the command itself.
+ * @param text String to be typed on screen after "Output" or "Command"
+ * @returns Null if historyText does not exist.
+ */
 const logText = (outPut: boolean, text: string) => {
   const historyText: HTMLElement | null = document.getElementById("history");
   const newPara: HTMLParagraphElement = document.createElement("p");

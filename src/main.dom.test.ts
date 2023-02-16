@@ -1,5 +1,5 @@
 import * as main from "./main";
-import * as csv from "./tableCsv"
+import * as csv from "./tableCsv";
 
 // Lets us use DTL's query library
 import { screen } from "@testing-library/dom";
@@ -30,7 +30,6 @@ beforeEach(() => {
   input = screen.getByPlaceholderText("Enter command here");
 });
 
-// now working
 test("trying invalid command in brief mode prints message", () => {
   userEvent.type(input, `boop`);
   main.handleButton();
@@ -41,52 +40,49 @@ test("trying invalid command in brief mode prints message", () => {
 });
 
 test("mode actually switches the mode", () => {
-  userEvent.type(input,'mode verbose')
+  userEvent.type(input, "mode verbose");
   main.handleButton();
-  let output = screen.getAllByText("Output: Output is now verbose")
+  let output = screen.getAllByText("Output: Output is now verbose");
   expect(output.length).toBe(1);
-  userEvent.type(input,'mode brief')
+  userEvent.type(input, "mode brief");
   main.handleButton();
   output = screen.getAllByText("Output: Output is now brief");
   expect(output.length).toBe(1);
-  userEvent.type(input,'mode apple')
+  userEvent.type(input, "mode apple");
   main.handleButton();
   output = screen.getAllByText("Output: Mode must be either brief or verbose");
   expect(output.length).toBe(1);
-
-})
+});
 
 test("csv setting works", () => {
-  userEvent.type(input,"load_file petsCSV")
-  main.handleButton()
-  let output = screen.getAllByText("Output: CSV loaded Successfully")
+  userEvent.type(input, "load_file petsCSV");
+  main.handleButton();
+  let output = screen.getAllByText("Output: CSV loaded Successfully");
   expect(output.length).toBe(1);
-  userEvent.type(input,"load_file fakeCSV")
-  main.handleButton()
-  output = screen.getAllByText("Output: CSV failed to load, try again")
+  userEvent.type(input, "load_file fakeCSV");
+  main.handleButton();
+  output = screen.getAllByText("Output: CSV failed to load, try again");
   expect(output.length).toBe(1);
-})
+});
 
-test("csv viewing works",() => {
-  userEvent.type(input,"load_file petsCSV")
-  main.handleButton()
-  userEvent.type(input,"view")
-  main.handleButton()
-  let output = screen.getAllByText("Output: See table below")
+test("csv viewing works", () => {
+  userEvent.type(input, "load_file petsCSV");
+  main.handleButton();
+  userEvent.type(input, "view");
+  main.handleButton();
+  let output = screen.getAllByText("Output: See table below");
   expect(output.length).toBe(1);
-})
+});
 
 test("basic verbose tests", () => {
-  userEvent.type(input,"mode verbose")
-  main.handleButton()
-  userEvent.type(input,"I like chicken")
-  main.handleButton()
-  let output = screen.getAllByText("Command: I like chicken")
-  expect(output.length).toBe(1)
-  output = screen.getAllByText("Output: Did not recognize command 'I'")
-  expect(output.length).toBe(1)
-})
-
-
+  userEvent.type(input, "mode verbose");
+  main.handleButton();
+  userEvent.type(input, "I like chicken");
+  main.handleButton();
+  let output = screen.getAllByText("Command: I like chicken");
+  expect(output.length).toBe(1);
+  output = screen.getAllByText("Output: Did not recognize command 'I'");
+  expect(output.length).toBe(1);
+});
 
 export {};
